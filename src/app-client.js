@@ -1,32 +1,12 @@
+/* global window document */
+
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import promise from 'redux-promise';
-
-import reducers from './reducers';
-import PostsIndex from './components/posts_index';
-import PostsNew from './components/post_new';
-import PostsShow from './components/posts_show';
-
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-
+import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { App } from './components/App';
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-
-    <BrowserRouter>
-      <div>
-        <Switch>
-          <Route path="/posts/new" component={PostsNew} />
-          <Route path="/posts/:id" component={PostsShow} />
-          <Route path="/" component={PostsIndex} />
-
-        </Switch>
-
-      </div>
-
-    </BrowserRouter>
-  </Provider>
-  , document.querySelector('.container'));
+  <Router>
+    <App/>
+  </Router>
+, document.getElementById('main'));
