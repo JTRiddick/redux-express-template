@@ -21,4 +21,3 @@ export default function(state = {}, action){
       return state;
   }
 }
-Contact GitHub API Training Shop Blog About
