@@ -9,16 +9,10 @@ class App extends Component {
   // state = {}
 
   render() {
-    // const { className, ...props } = this.props;
+
     return (
-      <div className={classnames('App', className)}>
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h1>React is here</h1>
       </div>
     );
   }
