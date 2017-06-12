@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import '../static/styles/index.css';
+import '../static/styles/index.scss';
 
 
 export default class App extends Component {

@@ -1,9 +1,17 @@
+// Sourcemap babel-loader scss loader uglifyjs
+import webpack from 'webpack';
 import path from 'path';
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
+let extractSCSS = new ExtractTextPlugin({
+  filename:"style.scss",
+  allChunks:true
+})
+let extractCSS = new ExtractTextPlugin('../css/style.css');
+
+const uglifyJs = new UglifyJSPlugin({
+  sourceMap: true
 });
 
 const config = {
@@ -26,40 +34,27 @@ const config = {
         },
       },
       {
-       test: /\.(scss|css)$/,
-       include: [
-         path.resolve(__dirname, './src/styles'),
-       ],
-       use: ExtractTextPlugin.extract({
-         fallback: 'style-loader',
-         loader: [
-           {
-             loader: 'css-loader',
-             options: {
-               modules: true,
-               importLoaders: 3,
-               sourceMap: true,
-             },
-           }, {
-             loader: 'postcss-loader',
-             options: {
-               browsers: 'last 2 version',
-               sourceMap: true,
-             },
-           }, {
-             loader: 'sass-loader',
-             options: {
-               // outputStyle: 'expanded',
-               sourceMap: true,
-               // sourceMapContents: true,
-             },
-           },
-         ],
-       }),
+        test:/\.scss$/,
+        // loader:ExtractTextPlugin.extract('css-loader!sass-loader')
+        loader: extractCSS.extract('css-loader?modules=true!sass-loader?sourceMap=true')
       }
     ],
   },
-  plugins: [extractSass],
+  plugins:[
+    extractCSS,
+    extractSCSS,
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV' : JSON.stringify(process.env.NODE_ENV)
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings:false},
+      mangle:true,
+      sourcemap:false,
+      beautify:false,
+      dead_code:true
+    }),
+    new ExtractTextPlugin('../css/style.css')
+  ]
 };
 
 export default config;

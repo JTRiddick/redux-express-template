@@ -45,10 +45,13 @@
     "mocha": "^3.4.2",
     "morgan": "^1.8.2",
     "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.5",
     "promise": "^7.1.1",
     "react-addons-test-utils": "^15.5.1",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "webpack": "^2.6.1"
   },
   "babel": {
