@@ -6,9 +6,9 @@ import { Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
 
 import reducers from '../reducers';
-import PostsIndex from './posts_index';
-import PostsNew from './post_new';
-import PostsShow from './posts_show';
+import Index from './index';
+
+import '../static/styles/index.scss';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
