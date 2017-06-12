@@ -4,6 +4,10 @@ import path from 'path';
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+require.extensions['.scss'] = () => { return; }; require.extensions['.css'] = () => { return; };
+
+
+
 let extractSCSS = new ExtractTextPlugin({
   filename:"style.scss",
   allChunks:true
@@ -35,8 +39,10 @@ const config = {
       },
       {
         test:/\.scss$/,
+        include: path.join(__dirname, 'src','static','styles'),
+        exclude: /node_modules/,
         // loader:ExtractTextPlugin.extract('css-loader!sass-loader')
-        loader: extractCSS.extract('css-loader?modules=true!sass-loader?sourceMap=true')
+        loader: extractCSS.extract('css-loader?modules=true!sass-loader?sourceMap=true?')
       }
     ],
   },

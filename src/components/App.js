@@ -8,8 +8,6 @@ import promise from 'redux-promise';
 import reducers from '../reducers';
 import Index from './index';
 
-import '../static/styles/index.scss';
-
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 
@@ -17,9 +15,9 @@ export const App = () => (
   <Provider store={createStoreWithMiddleware(reducers)}>
 
         <Switch>
-          <Route path="/posts/new" component={PostsNew} />
-          <Route path="/posts/:id" component={PostsShow} />
-          <Route path="/" component={PostsIndex} />
+          {/* <Route path="/posts/new" component={PostsNew} />
+          <Route path="/posts/:id" component={PostsShow} /> */}
+          <Route path="/" component={Index} />
         </Switch>
 
   </Provider>)
