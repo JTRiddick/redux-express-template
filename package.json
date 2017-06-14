@@ -4,7 +4,7 @@
   "description": "Redux Express Webpack Isomorphic ",
   "main": "index.js",
   "scripts": {
-    "start:x": "npm run build && babel-node src/run-server.js",
+    "start:x": "export NODE_ENV=production && export UNIVERSAL=true && webpack -p && babel-node src/run-server.js",
     "start": "npm run build && babel-node src/server.js",
     "start:dev": "export NODE_ENV=development && npm run build:dev && nodemon --exec babel-node -- src/server.js",
     "start:universal": "export UNIVERSAL=true && npm run start",

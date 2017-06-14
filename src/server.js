@@ -23,8 +23,10 @@ app.get('*', (req, res) => {
   let markup = '';
   let status = 200;
 
+
   if (process.env.UNIVERSAL) {
     const context = {};
+
     markup = renderToString(
       <Router location={req.url} context={context}>
         <App />
@@ -41,7 +43,7 @@ app.get('*', (req, res) => {
     }
   }
 
-  return res.status(status).render('index', { markup });
+  return res.status(status).render('index', { markup, css }).send(css);
 });
 
 // start the server

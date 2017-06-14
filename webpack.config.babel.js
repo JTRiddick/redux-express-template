@@ -11,6 +11,7 @@ let extractSCSS = new ExtractTextPlugin({
   allChunks:true
 })
 let extractCSS = new ExtractTextPlugin('../css/style.css');
+// let extractCSS = new ExtractTextPlugin('style.css');
 
 const uglifyJs = new UglifyJSPlugin({
   sourceMap: true
@@ -57,7 +58,7 @@ const config = {
       beautify:false,
       dead_code:true
     }),
-    new ExtractTextPlugin('../css/style.css')
+    new ExtractTextPlugin('style.css')
   ]
 };
 
