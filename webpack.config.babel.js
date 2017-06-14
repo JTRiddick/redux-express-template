@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import path from 'path';
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SplitByPathPlugin = require('webpack-split-by-path');
 
 require.extensions['.scss'] = () => { return; }; require.extensions['.css'] = () => { return; };
 
@@ -41,13 +42,14 @@ const config = {
         include: path.join(__dirname, 'src','static','sass'),
         exclude: /node_modules/,
         // loader:ExtractTextPlugin.extract('css-loader!sass-loader')
-        loader: extractCSS.extract('css-loader?modules=true!sass-loader?sourceMap=true?')
+        // loader: extractCSS.extract('isomorphic-style-loader!css-loader?modules=true!sass-loader?sourceMap=true?')
+        loader: 'isomorphic-style-loader!css-loader?modules=true!sass-loader?sourceMap=true?',
       },
     ],
   },
   plugins:[
-    extractCSS,
-    extractSCSS,
+    // extractCSS,
+    // extractSCSS,
     new webpack.DefinePlugin({
       'process.env.NODE_ENV' : JSON.stringify(process.env.NODE_ENV)
     }),
@@ -58,7 +60,7 @@ const config = {
       beautify:false,
       dead_code:true
     }),
-    new ExtractTextPlugin('style.css')
+    // new ExtractTextPlugin('style.css')
   ]
 };
 

@@ -23,9 +23,12 @@ app.get('*', (req, res) => {
   let markup = '';
   let status = 200;
 
+  const css = new Set(); // CSS for all rendered React components
+  const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
+  let styleSheet = [...css].join('');
 
   if (process.env.UNIVERSAL) {
-    const context = {};
+    // const context = {};
 
     markup = renderToString(
       <Router location={req.url} context={context}>
@@ -43,7 +46,7 @@ app.get('*', (req, res) => {
     }
   }
 
-  return res.status(status).render('index', { markup, css }).send(css);
+  return res.status(status).render('index', { markup, styleSheet });
 });
 
 // start the server
