@@ -12,3 +12,5 @@ require.extensions['.css'] = () => {
 }
 
 require('./server')
+
+// why is any of this necessary to prevent unexpected token in scss?

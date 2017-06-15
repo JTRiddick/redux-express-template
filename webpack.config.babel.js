@@ -12,7 +12,7 @@ let extractSCSS = new ExtractTextPlugin({
   allChunks:true
 })
 let extractCSS = new ExtractTextPlugin('../style.css');
-
+//moving css from /static/css/style.css to /static/ fixed stylesheet link???
 const uglifyJs = new UglifyJSPlugin({
   sourceMap: true
 });
@@ -37,7 +37,7 @@ const config = {
         },
       },
       {
-        test:/\.scss$/,
+        test:/(\.scss$|.css$)/,
         include: path.join(__dirname, 'src','static','sass'),
         exclude: /node_modules/,
         // loader:ExtractTextPlugin.extract('css-loader!sass-loader')
