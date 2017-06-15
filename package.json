@@ -4,7 +4,7 @@
   "description": "Redux Express Webpack Isomorphic ",
   "main": "index.js",
   "scripts": {
-    "start:x": "export NODE_ENV=production && export UNIVERSAL=true && webpack -p && babel-node src/run-server.js",
+    "start:x": "npm run build && export UNIVERSAL=true && babel-node src/run-server.js",
     "start": "npm run build && babel-node src/server.js",
     "start:dev": "export NODE_ENV=development && npm run build:dev && nodemon --exec babel-node -- src/server.js",
     "start:universal": "export UNIVERSAL=true && npm run start",
@@ -46,7 +46,6 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "http-server": "^0.10.0",
-    "isomorphic-style-loader": "^2.0.0",
     "jsdom": "^11.0.0",
     "mocha": "^3.4.2",
     "morgan": "^1.8.2",

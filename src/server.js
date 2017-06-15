@@ -8,6 +8,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { App } from './components/App';
 
+
 const app = new Express();
 const server = new Server(app);
 
@@ -22,14 +23,10 @@ app.use(Express.static(path.join(__dirname, 'static')));
 app.get('*', (req, res) => {
   let markup = '';
   let status = 200;
-
-  const css = new Set(); // CSS for all rendered React components
-  const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
-  let styleSheet = [...css].join('');
+  // let styleSheet = [...css].join('');
 
   if (process.env.UNIVERSAL) {
-    // const context = {};
-
+    const context = {};
     markup = renderToString(
       <Router location={req.url} context={context}>
         <App />
@@ -45,8 +42,8 @@ app.get('*', (req, res) => {
       status = 404;
     }
   }
+  return res.status(status).render('index', { markup });
 
-  return res.status(status).render('index', { markup, styleSheet });
 });
 
 // start the server
