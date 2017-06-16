@@ -6,20 +6,25 @@ import { Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
 
 import reducers from '../reducers';
-import Index from './index';
-import About from './about';
+
+import Layout from './Layout.js'
+import NotFoundPage from './NotFound.js'
+import Index from './Index';
+import About from './About';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-
 export const App = () => (
+  //Layout component
   <Provider store={createStoreWithMiddleware(reducers)}>
-
-        <Switch>
-          <Route path="/about" component={About} />
-          <Route path="/" component={Index} />
-        </Switch>
-
-  </Provider>)
+    <Layout>
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/" component={Index} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Layout>
+  </Provider>
+  )
 
 export default App;
