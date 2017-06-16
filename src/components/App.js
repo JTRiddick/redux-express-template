@@ -19,8 +19,8 @@ export const App = () => (
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Layout>
       <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/" component={Index} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/" component={Index} />
         <Route component={NotFoundPage} />
       </Switch>
     </Layout>

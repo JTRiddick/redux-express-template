@@ -1,11 +1,25 @@
+# modules
 /node_modules
-bundle.js
-npm-debug.log
+
+# ?
 .DS_Store
+
+#
 .babel_cache/
 /build
-/src/static/js/build.js
+
+# bundle
+bundle.js
+/src/static/js/bundle.js
+
+# extracttext stylesheet
+/static/style.css
 
 # IntelliJ
 *.iml
 /.idea
+
+# Logs
+logs
+*.log
+npm-debug.log*
