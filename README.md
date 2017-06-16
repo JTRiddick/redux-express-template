@@ -10,7 +10,8 @@ This is still incomplete
 -----------------------
 Untested:
 - rendering from data folder
-- redux 
+- redux
+- my understanding of css modules 
 
 Fix:
 - eslint
@@ -18,7 +19,6 @@ Fix:
 - babel configuration
 - superfluous npm packages
 - using as template throws npm install error for babel-preset-react-app
-- css @keyframes animation not working
 
 Add:
 - hot module loading and replacement
