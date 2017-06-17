@@ -11,7 +11,7 @@ let extractSCSS = new ExtractTextPlugin({
   filename:"style.scss",
   allChunks:true
 })
-let extractCSS = new ExtractTextPlugin('../style.css');
+let extractCSS = new ExtractTextPlugin('../css/style.css');
 //moving css from /static/css/style.css to /static/ fixed stylesheet link???
 const uglifyJs = new UglifyJSPlugin({
   sourceMap: true
@@ -38,14 +38,18 @@ const config = {
       },
       {
         test:/(\.scss$|.css$)/,
-        include: path.join(__dirname, 'src','static','sass'),
+        include: path.join(__dirname, 'src','sass'),
         exclude: /node_modules/,
-        // loader:ExtractTextPlugin.extract('css-loader!sass-loader')
         loader: extractCSS.extract('css-loader?modules=true!sass-loader?sourceMap=true?')
       },
     ],
   },
   plugins:[
+    new webpack.SourceMapDevToolPlugin({
+      // 404 from morgan with this filename
+      // filename: 'bundle.js.map',
+      exclude: /node_modules/,
+    }),
     extractCSS,
     extractSCSS,
     new webpack.DefinePlugin({
@@ -58,7 +62,7 @@ const config = {
       beautify:false,
       dead_code:true
     }),
-    new ExtractTextPlugin('../style.css')
+    new ExtractTextPlugin('../css/style.css')
   ]
 };
 

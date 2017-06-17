@@ -1,6 +1,7 @@
 /* eslint no-console: "off"*/
 
 import path from 'path';
+import morgan from 'morgan';
 import { Server } from 'http';
 import Express from 'express';
 import React from 'react';
@@ -18,6 +19,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+
+//logging
+app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
 // universal routing and rendering
 app.get('*', (req, res) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../static/sass/style.scss';
+import '../sass/style.scss';
 
 export const Layout = props => (
   <div className="app-container">
@@ -13,7 +13,7 @@ export const Layout = props => (
     <div className="app-content">{props.children}</div>
     <footer>
       <p>
-        This is a demo app to showcase <strong>universal Javascript</strong>
+        This is a demo app to showcase <strong>universal Javascript </strong>
         with <strong>React</strong> and <strong>Express</strong>.
       </p>
     </footer>

@@ -11,7 +11,7 @@ This is still incomplete
 Untested:
 - rendering from data folder
 - redux
-- my understanding of css modules 
+- my understanding of css modules
 
 Fix:
 - eslint
@@ -19,9 +19,10 @@ Fix:
 - babel configuration
 - superfluous npm packages
 - using as template throws npm install error for babel-preset-react-app
+- sourcemapping (try SourceMapDevToolPlugin)
 
 Add:
 - hot module loading and replacement
-- postCss loader
+- postCss loader (with autoprefixer plugin)
 - dedupe plugin
 - commonsChunk plugin
