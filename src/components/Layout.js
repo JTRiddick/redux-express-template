@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../sass/style.scss';
+import Navigation from './Navigation';
+
+import styles from '../sass/style.scss';
 
 export const Layout = props => (
   <div className="app-container">
-    <header>
+    <header className={styles.orangeBg}>
       <Link to="/">
-        <img className="logo" src="img/logo.svg" alt="Sitelogo" />
+        <img className="logo" src="/img/logo.svg" alt="Sitelogo" />
       </Link>
+      <Navigation/>
+      {console.log('layout props: ',props)}
     </header>
     <div className="app-content">{props.children}</div>
     <footer>

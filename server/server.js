@@ -1,13 +1,13 @@
 /* eslint no-console: "off"*/
 
 import path from 'path';
-import morgan from 'morgan';
 import { Server } from 'http';
 import Express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
-import { App } from './components/App';
+import morgan from 'morgan';
+import { Routes as App } from '../src/components/Routes';
 
 
 const app = new Express();
@@ -15,10 +15,10 @@ const server = new Server(app);
 
 // use ejs templates
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join('src', 'views'));
 
 // define the folder that will be used for static assets
-app.use(Express.static(path.join(__dirname, 'static')));
+app.use(Express.static(path.join('src', 'public')));
 
 //logging
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
@@ -27,7 +27,7 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 app.get('*', (req, res) => {
   let markup = '';
   let status = 200;
-  // let styleSheet = [...css].join('');
+
 
   if (process.env.UNIVERSAL) {
     const context = {};
@@ -36,7 +36,7 @@ app.get('*', (req, res) => {
         <App />
       </Router>,
     );
-
+    console.log('context ??', context);
     // context.url will contain the URL to redirect to if a <Redirect> was used
     if (context.url) {
       return res.redirect(302, context.url);
@@ -46,6 +46,7 @@ app.get('*', (req, res) => {
       status = 404;
     }
   }
+
   return res.status(status).render('index', { markup });
 
 });

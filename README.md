@@ -6,20 +6,23 @@ Based on a Universal JS example application by [Luciano Mammino](https://github.
 Start from run-server.js until issues with babel and webpack settings are cleared up.
 EsLint settings and plugins are here
 
+Might take the Scormblr test blog stuff out, this thing is already too big.
+Shouldn't need Redux middlewares so the test action should be rewritten.
+
 This is still incomplete
 -----------------------
 Untested:
 - rendering from data folder
-- redux
+- redux on the server
 - my understanding of css modules
 
 Fix:
 - eslint
 - why run-server.js is necessary
-- babel configuration
+- babel configuration is all over the place
 - superfluous npm packages
 - using as template throws npm install error for babel-preset-react-app
-- sourcemapping (try SourceMapDevToolPlugin)
+
 
 Add:
 - hot module loading and replacement
