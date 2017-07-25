@@ -5,8 +5,6 @@ import ReactDOM from 'react-dom';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux';
-import promise from 'redux-promise';
-import reduxThunk from 'redux-thunk'
 import rootReducer from './reducers/index';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from './components/Routes';
@@ -19,7 +17,7 @@ let store;
   // }
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
-  applyMiddleware(promise,reduxThunk)
+  applyMiddleware(/*middlewares*/)
 ));
 
 ReactDOM.render(
